@@ -1,5 +1,5 @@
 FROM python
-ENV development
+ENV FLASK_ENV=development
 WORKDIR app
 COPY . .
 RUN pip install -r requirements.txt
