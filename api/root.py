@@ -17,6 +17,16 @@ def env():
     response = "Environment: " + env
     return response
 
+@app.route('/healthy')
+def healthy():
+    response = "OK"
+    return response, 200
+
+@app.route('/nonhealthy')
+def nonhealthy():
+    response = "NO"
+    return response, 404
+
 
 @app.errorhandler(404)
 def not_found(e):
