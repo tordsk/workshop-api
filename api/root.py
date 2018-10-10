@@ -8,14 +8,16 @@ def home():
     response = "OK"
     return response
 
-@app.route('/env')
+@app.route('/pod-info')
 def env():
+    response={}
     try:
-        env = os.environ['FLASK_ENV']
+        response["Pod Name"] = str(os.environ['POD_NAME'])
+        response["Namespace"] = str(os.environ['NAMESPACE'])
     except:
-        env = 'unset'
-    response = "Environment: " + env
-    return response
+        pass
+
+    return json.dumps(response)
 
 @app.route('/healthy')
 def healthy():
@@ -25,9 +27,9 @@ def healthy():
 @app.route('/nonhealthy')
 def nonhealthy():
     response = "NO"
-    return response, 404
+    return response, 418
 
 
 @app.errorhandler(404)
 def not_found(e):
-    return '', 404
+    return 'try /env', 404
