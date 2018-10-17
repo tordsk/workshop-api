@@ -26,4 +26,4 @@ def nonhealthy():
 
 @app.errorhandler(404)
 def not_found(e):
-    return 'try /env', 404
+    return '404 - Valid endpoints are ["/", "/healthy", "/nonhealthy"]', 404
